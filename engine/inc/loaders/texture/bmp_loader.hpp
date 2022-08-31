@@ -15,29 +15,30 @@
 //#include "renderer/3d/bbox/bbox.hpp"
 namespace Tyra {
     //TODO: Add a class for manage RGB and RGBA colors and if possible textures;
-    typedef struct 
-    {
-        u8 r;
-        u8 g;  
-        u8 b;
-    } RGB;
+typedef struct 
+{
+    u8 r;
+    u8 g;  
+    u8 b;
+} RGB;
 
-    class BmpLoader : public TextureLoader {     
-    public:   
-        BmpLoader();
-        ~BmpLoader();
+class BmpLoader : public TextureLoader {     
 
-        inline TextureBuilderData *load(const std::string &fullpath) {
-            return load(fullpath.c_str());
-        }       
+public:   
+    BmpLoader();
+    ~BmpLoader();
 
-        TextureBuilderData *load(const char* fullpath);
+    inline TextureBuilderData *load(const std::string &fullpath) {
+        return load(fullpath.c_str());
+    }       
 
-    private:
-         TextureBuilderData *result;
-         u8 header[54]; 
-         u32 width[18];
-         u32 height[22];
-         u32 dataOffset[10];   
+    TextureBuilderData *load(const char* fullpath);
+
+private:
+    TextureBuilderData *result;
+    u8 header[54]; 
+    u32 width[18];
+    u32 height[22];
+    u32 dataOffset[10];   
     };
-};
+}
