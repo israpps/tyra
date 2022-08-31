@@ -12,19 +12,17 @@
 
 #include "loaders/texture/base/texture_loader.hpp"
 #include "renderer/core/texture/models/texture.hpp"
-//#include "renderer/3d/bbox/bbox.hpp"
+
 namespace Tyra {
-    //TODO: Add a class for manage RGB and RGBA colors and if possible textures;
-typedef struct 
-{
+typedef struct {
     u8 r;
     u8 g;  
     u8 b;
 } RGB;
 
 class BmpLoader : public TextureLoader {     
-
-public:   
+ 
+ public:   
     BmpLoader();
     ~BmpLoader();
 
@@ -34,7 +32,7 @@ public:
 
     TextureBuilderData *load(const char* fullpath);
 
-private:
+ private:
     TextureBuilderData *result;
     u8 header[54]; 
     u32 width[18];
