@@ -48,8 +48,10 @@ class TyraDebug {
     using expander = int[];
     (void)expander{0, (void(ss << std::forward<Args>(args)), 0)...};
 
-    if (Tyra::Info::writeLogsToFile) {
+    if (Tyra::Info::loggingMode == LOGGING_FILE) {
       writeInLogFile(&ss);
+    } else if (Tyra::Info::loggingMode == LOGGING_EESIO) {
+      writeInEESIO(&ss);
     } else {
       printf("%s", ss.str().c_str());
     }
@@ -63,8 +65,10 @@ class TyraDebug {
     ss1 << "| Assertion failed!\n";
     ss1 << "|\n";
 
-    if (Tyra::Info::writeLogsToFile) {
+    if (Tyra::Info::loggingMode == LOGGING_FILE) {
       writeInLogFile(&ss1);
+    } else if (Tyra::Info::loggingMode == LOGGING_EESIO) {
+      writeInEESIO(&ss1);
     } else {
       printf("%s", ss1.str().c_str());
     }
@@ -76,7 +80,7 @@ class TyraDebug {
     ss2 << "| File : " << file << ":" << line << "\n";
     ss2 << "====================================\n\n";
 
-    if (Tyra::Info::writeLogsToFile) {
+    if (Tyra::Info::loggingMode == LOGGING_FILE) {
       writeInLogFile(&ss2);
     } else {
       printf("%s", ss2.str().c_str());
@@ -93,7 +97,7 @@ class TyraDebug {
 
  private:
   static void writeInLogFile(std::stringstream* ss);
-
+  static void writeInEESIO(std::stringstream* ss);
   template <typename Arg, typename... Args>
   static void writeAssertLines(Arg&& arg, Args&&... args) {
     std::stringstream ss;
@@ -103,8 +107,10 @@ class TyraDebug {
     (void)expander{
         0, (void(ss << "| " << std::forward<Args>(args) << "\n"), 0)...};
 
-    if (Tyra::Info::writeLogsToFile) {
+    if (Tyra::Info::loggingMode == LOGGING_FILE) {
       writeInLogFile(&ss);
+    } else if (Tyra::Info::loggingMode == LOGGING_EESIO) {
+      writeInEESIO(&ss);
     } else {
       printf("%s", ss.str().c_str());
     }

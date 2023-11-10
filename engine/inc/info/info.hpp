@@ -17,6 +17,12 @@
 
 namespace Tyra {
 
+#define LOGGING_STDOUT (0) 
+#define LOGGING_FILE   (1)
+#define LOGGING_EESIO  (3) //EE UART
+#define LOGGING_PPCSIO (4) //SOON
+#define LOGGING_UDPTTY (5) //SOON
+
 class Info {
  public:
   Info();
@@ -24,7 +30,7 @@ class Info {
 
   Version version;
 
-  static bool writeLogsToFile;
+  static int loggingMode;
 
   /** Called by engine */
   void update();

@@ -14,7 +14,7 @@
 
 namespace Tyra {
 
-bool Info::writeLogsToFile = false;
+bool Info::loggingMode = LOGGING_STDOUT;
 
 Info::Info() {
   fps = 0;
