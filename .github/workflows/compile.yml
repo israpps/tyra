@@ -34,7 +34,7 @@ jobs:
 
     - name: Compile tyra demo
       run: |
-        make clean all ${{ github.event.inputs.make_args }} -C demo
+        make clean all -C demo
 
     - name: Get short SHA
       id: slug
